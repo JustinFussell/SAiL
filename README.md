@@ -14,6 +14,9 @@ A web-based AI tutoring platform for South African students, offering personaliz
 ## License
 This project is licensed under the MIT License.
 
+## Setup
+- This repo uses a `.gitignore` to exclude any sensitive files (e.g., API keys, virtual environments), and ensures the safe handling of all users.
+
 ## Contact
 - Developer: Justin Fussell
 - Email: justinfussell23@gmail.com
