@@ -15,6 +15,7 @@ A web-based AI tutoring platform for South African students, offering personaliz
 This project is licensed under the MIT License.
 
 ## Setup
+- Set up Python 3.13.5 and VS Code on Windows 11 for SAiL development
 - This repo uses a `.gitignore` to exclude any sensitive files (e.g., API keys, virtual environments), and ensures the safe handling of all users.
 
 ## Contact
