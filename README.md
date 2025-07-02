@@ -20,7 +20,7 @@ This project is licensed under the MIT License.
 
 ## Progress
 **Week 1**
-- Successfuly created a very basic test Streamlit app to understad the basics
+- Successfuly created a very basic test Streamlit app to understand the basics
 
 ## Contact
 - Developer: Justin Fussell
