@@ -14,6 +14,26 @@ A web-based AI tutoring platform for South African students, offering personaliz
 ## License
 This project is licensed under the MIT License.
 
+## License
+
+This project is licensed under the MIT License.  
+See the [`LICENSE`](SAiL/LICENSE) file for full terms.
+
+---
+
+**Important Notice**
+
+This project is licensed under the MIT License and is intended **strictly for learning, personal exploration, and demonstration purposes**.
+
+You are welcome to **view and study the code** to understand the implementation and concepts.  
+However, **you are *not permitted* to copy, reuse, modify, distribute, or sell** any part of this project, in whole or in part, **without the author’s explicit written permission**.
+
+This project remains the intellectual property of the author and is **not intended for commercial or production use by third parties**.
+
+© 2025 Justin Simon Fussell – All rights reserved.
+
+---
+
 ## Setup
 - Set up Python 3.13.5 and VS Code on Windows 11 for SAiL development
 - This repo uses a `.gitignore` to exclude any sensitive files (e.g., API keys, virtual environments), and ensures the safe handling of all users.
