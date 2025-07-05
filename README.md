@@ -12,9 +12,6 @@ A web-based AI tutoring platform for South African students, offering personaliz
 - **Status**: In development (started June 2025).
 
 ## License
-This project is licensed under the MIT License.
-
-## License
 
 This project is licensed under the MIT License.  
 See the [`LICENSE`](./LICENSE) file for full terms.
@@ -41,6 +38,7 @@ This project remains the intellectual property of the author and is **not intend
 ## Progress
 **Week 1**
 - Successfuly created a very basic test Streamlit app to understand the basics
+- Successfuly built a math dataset with 50+ questions and answers for the AI chatbot and tested the AI Model in Google Colabs free cloud platform to ensure the correct and accurate answering of each question.
 
 ## Contact
 - Developer: Justin Fussell
