@@ -1,0 +1,92 @@
+# Useful Streamlit Commands for SAiL in VS Code Terminal
+
+Below is a list of Streamlit commands to use in the VS Code integrated terminal for developing and testing the SAiL (South African Intelligent Learning) app. Each command includes a description of its purpose and step-by-step instructions for use, tailored for the SAiL project in `C:\SAiL`.
+
+- **Command: `streamlit run app.py`**
+  - **What It Does**: Launches the SAiL Streamlit app (`app.py`) and opens it in a browser at `http://localhost:8501`. This is the primary command to test the app’s AI question-answering, translations (English, Afrikaans, Xhosa), UI animations, and chat history.
+  - **How to Use**:
+    1. Open VS Code.
+    2. Go to Terminal > New Terminal (or press `Ctrl+Shift+``).
+    3. Navigate to the SAiL directory: `cd C:\SAiL`.
+    4. Activate the virtual environment (if using one): `.venv\Scripts\activate.bat`.
+    5. Run: `streamlit run app.py`.
+    6. A browser tab opens at `http://localhost:8501`. Test features like entering “What is 2 + 2?” or “Wat is 8 × 9?”.
+  - **When to Use**: Use after editing `app.py` or `math_data.csv` to test changes, such as improved AI answers or UI enhancements.
+
+- **Command: `streamlit run app.py --server.port 8502`**
+  - **What It Does**: Runs the SAiL app on a custom port (e.g., `8502`) instead of the default `8501`, useful if another program is using `8501`.
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Activate the virtual environment: `.venv\Scripts\activate.bat`.
+    4. Run: `streamlit run app.py --server.port 8502`.
+    5. Open `http://localhost:8502` in your browser to view the app.
+  - **When to Use**: Use if you see a “port 8501 is already in use” error or when testing multiple Streamlit apps simultaneously.
+
+- **Command: `Ctrl+C`**
+  - **What It Does**: Stops the Streamlit server running in the terminal, closing the SAiL app.
+  - **How to Use**:
+    1. In the VS Code terminal where `streamlit run app.py` is running, press `Ctrl+C`.
+    2. The terminal will show the server has stopped.
+    3. If it doesn’t stop, use Task Manager to end the Python process or restart VS Code.
+  - **When to Use**: Use when you’re done testing SAiL or need to restart after editing `app.py`.
+
+- **Command: `.venv\Scripts\activate.bat`**
+  - **What It Does**: Activates the Python virtual environment in `C:\SAiL\.venv`, ensuring SAiL uses isolated dependencies (`streamlit`, `sentence-transformers`, `transformers`, etc.).
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Run: `.venv\Scripts\activate.bat`.
+    4. Confirm the terminal shows `(.venv)` before the prompt.
+    5. Then run other commands like `streamlit run app.py`.
+  - **When to Use**: Use before any Streamlit command to ensure the correct libraries are loaded. If you don’t have a virtual environment, create one with `python -m venv .venv`.
+
+- **Command: `pip install streamlit`**
+  - **What It Does**: Installs Streamlit in your active environment.
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Activate the virtual environment: `.venv\Scripts\activate.bat`.
+    4. Run: `pip install streamlit`.
+  - **When to Use**: Use if you get a “streamlit is not recognized” error or if Streamlit isn’t installed.
+
+- **Command: `pip install --upgrade streamlit`**
+  - **What It Does**: Updates Streamlit to the latest version, ensuring access to new features and bug fixes.
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Activate the virtual environment: `.venv\Scripts\activate.bat`.
+    4. Run: `pip install --upgrade streamlit`.
+  - **When to Use**: Use if you encounter compatibility issues with SAiL’s UI (e.g., chat history or MathJax rendering) or want the latest features.
+
+- **Command: `streamlit --version`**
+  - **What It Does**: Displays the installed Streamlit version in the terminal.
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Activate the virtual environment: `.venv\Scripts\activate.bat`.
+    4. Run: `streamlit --version`.
+    5. Check the output (e.g., `Streamlit, version 1.35.0`).
+  - **When to Use**: Use to verify Streamlit is installed and check its version for compatibility with SAiL.
+
+- **Command: `streamlit cache clear`**
+  - **What It Does**: Clears Streamlit’s cache, forcing it to reload data and models (e.g., `math_data.csv` or `distilbert-base-uncased-distilled-squad`).
+  - **How to Use**:
+    1. Open VS Code’s terminal.
+    2. Navigate to `C:\SAiL`: `cd C:\SAiL`.
+    3. Activate the virtual environment: `.venv\Scripts\activate.bat`.
+    4. Run: `streamlit cache clear`.
+    5. Then run: `streamlit run app.py` to test with fresh data.
+  - **When to Use**: Use if changes to `math_data.csv` or AI models don’t appear in SAiL, or if you suspect caching issues.
+
+- **Command: `pip install -r requirements.txt`**
+  - **What It Does**: Installs all dependencies listed in `requirements.txt` (e.g., `streamlit`, `sentence-transformers`, `transformers`, `requests`, `torch`, `pandas`) for SAiL.
+  - **How to Use**:
+    1. Create `requirements.txt` in `C:\SAiL`:
+       - In VS Code’s terminal, navigate to `C:\SAiL`: `cd C:\SAiL`.
+       - Activate the virtual environment: `.venv\Scripts\activate.bat`.
+       - Run: `pip freeze > requirements.txt`.
+       - Verify `C:\SAiL\requirements.txt` includes `streamlit`, `sentence-transformers`, `transformers`, `requests`, `torch`, `pandas`.
+    2. Install dependencies:
+       - Run: `pip install -r requirements.txt`.
+  - **When to Use**: Use when setting up a new environment or preparing SAiL for deployment to Streamlit Cloud.

@@ -1,0 +1,109 @@
+# Useful GitHub Commands for SAiL Project
+
+Below is a list of essential Git commands to manage my SAiL (South African Intelligent Learning) project in VS Code or the terminal, with simple explanations and steps for use. These commands help me start, track, and sync my code (e.g., `app.py`, `math_data.csv`) with GitHub (`https://github.com/JustinFussell/SAiL.git`).
+
+- **Command: `git init`**
+  - **What It Does**: Creates a new Git repository in my folder, turning it into a project I can track with Git.
+  - **How to Use**:
+    1. Open the terminal in VS Code (Terminal > New Terminal).
+    2. Navigate to my SAiL folder.
+    3. Run: `git init`.
+    4. A `.git` folder appears, meaning Git is ready to track changes.
+
+- **Command: `git status`**
+  - **What It Does**: Shows the current state of my repository, like which files are changed or ready to commit.
+  - **How to Use**:
+    1. In the terminal, run: `git status`.
+    2. Look for modified files (e.g., `app.py`) or untracked files (e.g., new files like `commit_message.md`).
+    3. Use this before committing to see what’s ready.
+
+- **Command: `git add <file>`**
+  - **What It Does**: Stages a specific file (e.g., `app.py`) to be included in my next commit.
+  - **How to Use**:
+    1. Run: `git add app.py` (or `git add .` to stage all changes).
+    2. Check with `git status`—staged files move to “Changes to be committed.”
+    3. Stage multiple files: `git add app.py math_data.csv`.
+
+- **Command: `git commit -m "message"`**
+  - **What It Does**: Saves my staged changes with a message (e.g., “Implemented core SAiL features”).
+  - **How to Use**:
+    1. After staging, run: `git commit -m "Implemented core SAiL features and enhancements"`.
+    2. Or use VS Code’s Source Control panel: enter the message and click the checkmark.
+    3. This locks in my changes locally.
+
+- **Command: `git remote add origin <url>`**
+  - **What It Does**: Links my local repository to a GitHub repository (e.g., `https://github.com/JustinFussell/SAiL.git`).
+  - **How to Use**:
+    1. Run: `git remote add origin https://github.com/JustinFussell/SAiL.git`.
+    2. Verify with `git remote -v` to ensure the URL is correct.
+    3. Use this if the remote isn’t set up yet.
+
+- **Command: `git push origin main`**
+  - **What It Does**: Uploads my committed changes to the `main` branch on GitHub.
+  - **How to Use**:
+    1. After committing, run: `git push origin main`.
+    2. If it’s my first push, use `git push -u origin main` to set the upstream.
+    3. Check GitHub (`https://github.com/JustinFussell/SAiL.git`) to see updates.
+
+- **Command: `git pull origin main`**
+  - **What It Does**: Downloads and merges changes from the GitHub `main` branch to my local copy.
+  - **How to Use**:
+    1. Run: `git pull origin main` before pushing if the remote has new changes.
+    2. Resolve conflicts in VS Code if they appear, then `git add` and `git commit`.
+    3. Use this to sync with others’ updates.
+
+- **Command: `git remote -v`**
+  - **What It Does**: Displays the remote repositories linked to my project (e.g., `origin`).
+  - **How to Use**:
+    1. Run: `git remote -v`.
+    2. Check that `origin` points to `https://github.com/JustinFussell/SAiL.git`.
+    3. Fix with `git remote set-url origin <correct-url>` if wrong.
+
+- **Command: `git log`**
+  - **What It Does**: Shows a history of all commits in my repository.
+  - **How to Use**:
+    1. Run: `git log`.
+    2. See details like commit messages and dates (e.g., my SAiL commits).
+    3. Press `q` to exit the log view.
+
+- **Command: `git branch`**
+  - **What It Does**: Lists all branches and highlights the current one (e.g., `main`).
+  - **How to Use**:
+    1. Run: `git branch`.
+    2. Switch branches with `git checkout <branch>` if needed (e.g., `git checkout main`).
+    3. Use to manage multiple versions of SAiL.
+
+- **Command: `git checkout main`**
+  - **What It Does**: Switches my working directory to the `main` branch.
+  - **How to Use**:
+    1. Run: `git checkout main`.
+    2. Ensure you’re on the right branch before pushing.
+    3. Use after creating a new branch to return.
+
+- **Command: `git merge <branch>`**
+  - **What It Does**: Combines changes from another branch (e.g., `feature`) into the current branch.
+  - **How to Use**:
+    1. Switch to `main`: `git checkout main`.
+    2. Run: `git merge feature`.
+    3. Resolve conflicts in VS Code, then `git commit` to finish.
+
+- **Command: `git push -f origin main`**
+  - **What It Does**: Forces a push to overwrite the remote `main` branch with my local version.
+  - **How to Use**:
+    1. Run: `git push -f origin main` only if you’re sure (e.g., no one else is editing).
+    2. Use cautiously to avoid losing remote changes.
+    3. Check GitHub after to confirm.
+
+- **Command: `git reset <file>`**
+  - **What It Does**: Unstages a file from the commit process if you added it by mistake.
+  - **How to Use**:
+    1. Run: `git reset app.py` to unstage.
+    2. Check with `git status` to confirm.
+    3. Use if you staged the wrong file.
+
+- **Command: `git clone <url>`**
+  - **What It Does**: Downloads a GitHub repository to my computer.
+  - **How to Use**:
+    1. Run: `git clone https://github.com/JustinFussell/SAiL.git` in a new folder.
+    2. Use this to start working on SAiL from scratch on another machine.
+    3. Navigate into the folder: `cd SAiL`.
