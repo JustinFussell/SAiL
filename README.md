@@ -37,10 +37,23 @@ This project remains the intellectual property of the author and is **not intend
 
 ## Progress
 **Week 1**
-- Successfuly created a very basic test Streamlit app to understand the basics
-- Successfuly built a math dataset with 50+ questions and answers for the AI chatbot and tested the AI Model in Google Colabs free cloud platform to ensure the correct and accurate answering of each question.
+- Successfully created a very basic test Streamlit app to understand the basics.  
+- Successfully built a math dataset with 50+ questions and answers for the AI chatbot and tested the AI model in Google Colab’s free cloud platform to ensure correct and accurate answering of each question.
+
+**Week 2**
+- Expanded `math_data.csv` to 100+ questions covering arithmetic, fractions, geometry, algebra, trigonometry, probability, and calculus, with step-by-step explanations (e.g., “What is 2 + 2?” → “2 + 2 equals 4”).  
+- Developed `app.py` with a hybrid AI system using `sentence-transformers` (`all-MiniLM-L6-v2`) for similarity matching and `distilbert-base-uncased-distilled-squad` for fallback answers, fixing an initial `OSError`.  
+- Integrated DeepL API Free (500,000 characters/month) for multilingual support in English, Afrikaans, and Xhosa, with basic error handling.  
+- Designed a modern Streamlit UI with custom CSS, a two-column layout (question input/answers and chat history), animated buttons, a gold-themed sidebar, MathJax for math symbols (e.g., x², π), and a branded logo (`assets/SAiL.png`).  
+- Added a sidebar for language and subject selection (Math available, Science coming soon) and a math symbols guide.  
+- Resolved Git issues (e.g., unrelated histories) and pushed updates to GitHub (`https://github.com/JustinFussell/SAiL.git`).  
+- Shared progress on LinkedIn, highlighting features and next steps.
+  
+- SAiL is a functional AI math tutor with a robust dataset, multilingual capabilities, and a polished UI, ready for local testing.  
+- Preparing for Streamlit Cloud deployment with a `requirements.txt` file (`streamlit`, `sentence-transformers`, `transformers`, `torch`, `pandas`, `requests`).  
+- Next steps include enhancing error handling (e.g., input validation), adding more dataset variety and possible topic categorization (e.g., word problems and possible dropdowns), and deploying to Streamlit Community Cloud for public access. On top of that is additional run throughs to ensure no errors when interacting with the chatbot regarding math question inputs and answer outputs given by the bot to make sure it does not provide incorrect answers to users. 
 
 ## Contact
-- Developer: Justin Fussell
+- Sole Developer: Justin Fussell
 - Email: justinfussell23@gmail.com
 - LinkedIn: www.linkedin.com/in/justin-fussell
