@@ -2,9 +2,10 @@
 import streamlit as st
 import pandas as pd
 from sentence_transformers import SentenceTransformer, util
-from transformers import pipeline
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 import torch
 import requests
+import re
 
 # Configure the page with a wide layout, title, and icon
 st.set_page_config(page_title="SAiL: South African Intelligent Learning", page_icon=":books:", layout="wide")
@@ -76,12 +77,14 @@ def load_similarity_model():
 
 similarity_model = load_similarity_model()
 
-# Load and cache the question-answering model as a fallback
+# Load and cache the math-specific model
 @st.cache_resource
-def load_qa_model():
-    return pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
+def load_math_model():
+    tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-small")
+    model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-small")
+    return tokenizer, model
 
-chatbot = load_qa_model()
+math_tokenizer, math_model = load_math_model()
 
 # Set up DeepL API for text translation
 DEEPL_API_KEY = "0bb5521b-b76b-458c-9f42-7922c24500a2:fx"  
@@ -105,6 +108,25 @@ def translate_text(text, target_lang):
     st.warning("Translation failed, using original text.")
     return text
 
+# Function to handle basic arithmetic
+def solve_basic_arithmetic(question_en):
+    match = re.search(r"What is (\d+)\s*([+\-×*/])\s*(\d+)", question_en.replace("−", "-").replace("×", "*"))
+    if match:
+        num1, op, num2 = match.groups()
+        num1, num2 = float(num1), float(num2)
+        if op == "+": return f"{num1} + {num2} equals {num1 + num2}."
+        elif op == "-": return f"{num1} - {num2} equals {num1 - num2}."
+        elif op == "*": return f"{num1} × {num2} equals {num1 * num2}."
+        elif op == "/": return f"{num1} ÷ {num2} equals {num1 / num2}." if num2 != 0 else "Division by zero is undefined."
+    return None
+
+# Function to get answer from math model
+def get_math_answer(question_en):
+    input_text = f"question: {question_en}"
+    inputs = math_tokenizer(input_text, return_tensors="pt", max_length=512, truncation=True)
+    outputs = math_model.generate(**inputs, max_length=128)
+    return math_tokenizer.decode(outputs[0], skip_special_tokens=True)
+
 # Set up a two-column layout for question input and chat history
 col1, col2 = st.columns([2, 1])
 
@@ -118,25 +140,28 @@ with col1:
             # Translate the question to English for processing
             question_en = translate_text(question, "English") if language != "English" else question
             
-            # Filter dataset based on selected topic
-            filtered_data = data if topic == "All" else data[data["topic"] == topic]
-            
-            # Compute similarity between user question and filtered dataset questions
-            question_embedding = similarity_model.encode(question_en, convert_to_tensor=True)
-            dataset_questions = filtered_data["question"].tolist()
-            dataset_embeddings = similarity_model.encode(dataset_questions, convert_to_tensor=True)
-            similarities = util.cos_sim(question_embedding, dataset_embeddings)[0]
-            
-            # Determine the best answer based on similarity or fallback to QA model
-            max_similarity = similarities.max().item()
-            if max_similarity > 0.7:  # Adjusted threshold to 0.7 for stricter matching
-                best_match_idx = similarities.argmax().item()
-                answer = filtered_data["answer"].iloc[best_match_idx]
+            # Try basic arithmetic first
+            arithmetic_answer = solve_basic_arithmetic(question_en)
+            if arithmetic_answer:
+                answer = arithmetic_answer
             else:
-                context = " ".join(filtered_data["answer"].tolist())
-                result = chatbot(question=question_en, context=context)
-                answer = result['answer']
-            
+                # Filter dataset based on selected topic
+                filtered_data = data if topic == "All" else data[data["topic"] == topic]
+                
+                # Compute similarity between user question and filtered dataset questions
+                question_embedding = similarity_model.encode(question_en, convert_to_tensor=True)
+                dataset_questions = filtered_data["question"].tolist()
+                dataset_embeddings = similarity_model.encode(dataset_questions, convert_to_tensor=True)
+                similarities = util.cos_sim(question_embedding, dataset_embeddings)[0]
+                
+                # Determine the best answer based on similarity or fallback to math model
+                max_similarity = similarities.max().item()
+                if max_similarity > 0.6:
+                    best_match_idx = similarities.argmax().item()
+                    answer = filtered_data["answer"].iloc[best_match_idx]
+                else:
+                    answer = get_math_answer(question_en)
+
             # Translate the answer to the selected language
             answer_translated = translate_text(answer, language)
             
