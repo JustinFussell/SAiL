@@ -56,19 +56,32 @@ st.markdown("Your free AI-powered math tutor for students in Cape Town and beyon
 # Create sidebar for user settings including language, topic, and subject selection
 st.sidebar.header("Settings")
 language = st.sidebar.selectbox("Select Language", ["English", "Afrikaans", "Xhosa"])
-topic = st.sidebar.selectbox("Select Math Topic", ["All", "Arithmetic", "Algebra", "Geometry", "Trigonometry", "Calculus", "Probability"])
+topic = st.sidebar.selectbox("Select Math Topic", ["Arithmetic", "Algebra", "Geometry", "Trigonometry", "Calculus", "Probability"])
 subject = st.sidebar.selectbox("Select Subject", ["Math (Available)", "Science (Coming Soon)"])
+
+# Define topic explanations
+topic_explanations = {
+    "Arithmetic": "Arithmetic is the branch of mathematics dealing with basic operations like addition, subtraction, multiplication, and division using numbers.",
+    "Algebra": "Algebra involves using symbols (usually letters) to represent numbers and studying relationships between them, such as equations and variables.",
+    "Geometry": "Geometry is the study of shapes, sizes, and properties of space, including points, lines, angles, and figures like triangles and circles.",
+    "Trigonometry": "Trigonometry focuses on the relationships between the angles and sides of triangles, often using functions like sine, cosine, and tangent.",
+    "Calculus": "Calculus deals with change and motion, using concepts like derivatives (rates of change) and integrals (accumulations).",
+    "Probability": "Probability is the measure of the likelihood that an event will occur, often expressed as a fraction between 0 and 1."
+}
+
+# Display topic explanation when selected
+st.sidebar.markdown(f"**Topic Explanation**: {topic_explanations[topic]}")
 
 # Initialize session state to store chat history across interactions
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Load and cache the math dataset for efficient reuse
+# Load and cache the topic-specific dataset
 @st.cache_data
-def load_data():
-    return pd.read_csv("data/math_data.csv")
+def load_data(topic):
+    return pd.read_csv(f"data/{topic.lower()}.csv")
 
-data = load_data()
+data = load_data(topic)
 
 # Load and cache the sentence transformer model for question similarity matching
 @st.cache_resource
@@ -80,8 +93,8 @@ similarity_model = load_similarity_model()
 # Load and cache the math-specific model
 @st.cache_resource
 def load_math_model():
-    tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-small")
-    model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-small")
+    tokenizer = T5Tokenizer.from_pretrained("google/t5-v1_1-small")
+    model = T5ForConditionalGeneration.from_pretrained("google/t5-v1_1-small")
     return tokenizer, model
 
 math_tokenizer, math_model = load_math_model()
@@ -122,9 +135,9 @@ def solve_basic_arithmetic(question_en):
 
 # Function to get answer from math model
 def get_math_answer(question_en):
-    input_text = f"question: {question_en}"
+    input_text = f"math problem: {question_en} Solve step by step:"
     inputs = math_tokenizer(input_text, return_tensors="pt", max_length=512, truncation=True)
-    outputs = math_model.generate(**inputs, max_length=128)
+    outputs = math_model.generate(**inputs, max_length=256, num_beams=5, early_stopping=True)
     return math_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 # Set up a two-column layout for question input and chat history
@@ -145,12 +158,9 @@ with col1:
             if arithmetic_answer:
                 answer = arithmetic_answer
             else:
-                # Filter dataset based on selected topic
-                filtered_data = data if topic == "All" else data[data["topic"] == topic]
-                
-                # Compute similarity between user question and filtered dataset questions
+                # Compute similarity between user question and dataset questions
                 question_embedding = similarity_model.encode(question_en, convert_to_tensor=True)
-                dataset_questions = filtered_data["question"].tolist()
+                dataset_questions = data["question"].tolist()
                 dataset_embeddings = similarity_model.encode(dataset_questions, convert_to_tensor=True)
                 similarities = util.cos_sim(question_embedding, dataset_embeddings)[0]
                 
@@ -158,7 +168,7 @@ with col1:
                 max_similarity = similarities.max().item()
                 if max_similarity > 0.6:
                     best_match_idx = similarities.argmax().item()
-                    answer = filtered_data["answer"].iloc[best_match_idx]
+                    answer = data["answer"].iloc[best_match_idx]
                 else:
                     answer = get_math_answer(question_en)
 

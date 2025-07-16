@@ -1,0 +1,8 @@
+question,answer
+"What is sin(30 degrees)?","In trigonometry, sin(30°) is a standard value. It equals 0.5."
+"What is cos(60 degrees)?","In trigonometry, cos(60°) is a standard value. It equals 0.5."
+"What is tan(45 degrees)?","In trigonometry, tan(45°) is a standard value. It equals 1."
+"What is the sine rule?","The sine rule is a/sin(A) = b/sin(B) = c/sin(C) for a triangle’s sides and angles."
+"What is the cosine rule?","The cosine rule is a^2 = b^2 + c^2 − 2bc cos(A) for a triangle."
+"What is sin(90 degrees)?","sin(90°) = 1."
+"What is cos(0 degrees)?","cos(0°) = 1."

@@ -1,0 +1,11 @@
+question,answer
+"What is the derivative of x^3?","The derivative of x^n is n × x^(n−1). For x^3, n = 3. So, 3 × x^(3−1) = 3x^2."
+"What is the derivative of 4x^2?","The derivative of x^n is n × x^(n−1). For 4x^2, n = 2. So, 4 × 2 × x^(2−1) = 8x."
+"What is the integral of 2x?","The integral of x^n is (x^(n+1))/(n+1). For 2x, n = 1. So, (2 × x^(1+1))/(1+1) = x^2 + C."
+"What is the integral of 3x^2?","The integral of x^n is (x^(n+1))/(n+1). For 3x^2, n = 2. So, (3 × x^(2+1))/(2+1) = x^3 + C."
+"What is the derivative of x^4 − 2x^2?","Differentiate each term: For x^4, 4x^3; for −2x^2, −4x. So, the derivative is 4x^3 − 4x."
+"What is the derivative of 5x + 2?","The derivative of ax + b is a. Here, a = 5. So, the derivative is 5."
+"What is the derivative of sin(x)?","The derivative of sin(x) is cos(x)."
+"What is the derivative of cos(x)?","The derivative of cos(x) is −sin(x)."
+"What is the integral of 4x^3?","The integral of x^n is (x^(n+1))/(n+1). For 4x^3, n = 3. So, (4 × x^4)/4 = x^4 + C."
+"What is the integral of 1/x?","The integral of 1/x is ln|x| + C."

@@ -1,0 +1,7 @@
+question,answer
+"What is the probability of rolling a 6 on a fair die?","A die has 6 faces, so the probability is 1/6."
+"What is the probability of drawing a red card from a standard deck?","A deck has 52 cards, 26 are red. Probability is 26/52 = 1/2."
+"What is the probability of rolling an even number on a die?","A die has 6 faces, 3 are even (2, 4, 6). Probability is 3/6 = 1/2."
+"What is the probability of drawing an ace from a deck of 52 cards?","There are 4 aces. Probability is 4/52 = 1/13."
+"What is the probability of rolling a number less than 3 on a die?","Faces less than 3 are 1, 2. Probability is 2/6 = 1/3."
+"What is the probability of flipping two heads in a row with a fair coin?","Probability of one head is 1/2. For two: (1/2) × (1/2) = 1/4."

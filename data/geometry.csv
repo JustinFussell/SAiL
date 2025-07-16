@@ -1,0 +1,11 @@
+question,answer
+"What is the perimeter of a rectangle with length 5 cm and width 3 cm?","Perimeter is 2 × (length + width). Add: 5 + 3 = 8. Multiply: 2 × 8 = 16. So, the perimeter is 16 cm."
+"How many sides does a pentagon have?","A pentagon has 5 sides. So, the answer is 5."
+"What is the area of a square with side 4 cm?","Area is side × side. Calculate: 4 × 4 = 16. So, the area is 16 cm²."
+"What is the circumference of a circle with radius 2 cm? (Use π = 3.14)","Circumference is 2 × π × radius. Calculate: 2 × 3.14 × 2 = 12.56. So, the circumference is 12.56 cm."
+"How many faces does a cube have?","A cube has 6 faces. So, the answer is 6."
+"What is the area of a triangle with base 6 cm and height 4 cm?","Area is (1/2) × base × height. Calculate: (1/2) × 6 × 4 = 12. So, the area is 12 cm²."
+"What is the area of a circle with radius 3 cm? (Use π = 3.14)","Area is π × radius^2. Calculate: 3.14 × 3^2 = 3.14 × 9 = 28.26. So, the area is 28.26 cm²."
+"What is the distance between points (1, 2) and (4, 6)?","Use the distance formula: √[(x2 − x1)^2 + (y2 − y1)^2]. Calculate: √[(4 − 1)^2 + (6 − 2)^2] = √[9 + 16] = √25 = 5. So, the distance is 5 units."
+"What is the sum of angles in a triangle?","The sum of angles in a triangle is always 180 degrees."
+"What is the volume of a cube with side 3 cm?","Volume is side^3. Calculate: 3 × 3 × 3 = 27. So, the volume is 27 cm³."
