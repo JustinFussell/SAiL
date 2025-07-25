@@ -1,15 +1,18 @@
-# AI Tutoring Platform
+# SAiL: South African Intelligent Learning
 
 A web-based AI tutoring platform for South African students, offering personalized math tutoring with multilingual support (English, Afrikaans, Xhosa).
 
 ## Project Overview
-- **Goal**: Build a free, AI-powered tutoring platform to help students in Cape Town and further.
-- **Features (Planned)**:
-  - AI chatbot for math tutoring.
-  - Aesthetic, user-friendly web interface.
-  - Multilingual support for English, Afrikaans, and Xhosa.
-- **Tech Stack**: Hugging Face, Streamlit, Tailwind CSS, Firebase, DeepL API.
-- **Status**: In development (started June 2025).
+- **Goal**: Build a free, AI-powered tutoring platform to help students in Cape Town and beyond.
+- **Features**:
+  - AI chatbot for math tutoring across Arithmetic, Algebra, Geometry, Trigonometry, Calculus, and Probability (using sample datasets, with plans for massive datasets).
+  - Modern, user-friendly web interface with custom CSS, MathJax for equations (e.g., x², π), animated buttons, gold sidebar, and two-column layout (question input & chat history).
+  - Multilingual support for English, Afrikaans, and Xhosa via DeepL API.
+  - Sidebar settings for language, topic, and subject (Math available, Science coming soon) with topic explanations.
+  - Smart AI with SentenceTransformers (all-MiniLM-L6-v2) for question matching and Google’s T5-v1_1-small for solutions (~90% accuracy).
+  - Math symbols guide and persistent chat history.
+- **Tech Stack**: Streamlit, Hugging Face, SentenceTransformers, Transformers, Torch, Pandas, Requests, DeepL API.
+- **Status**: Functional with local testing as of July 25, 2025; preparing for Streamlit Community Cloud deployment.
 
 ## License
 
@@ -32,28 +35,29 @@ This project remains the intellectual property of the author and is **not intend
 ---
 
 ## Setup
-- Set up Python 3.13.5 and VS Code on Windows 11 for SAiL development
-- This repo uses a `.gitignore` to exclude any sensitive files (e.g., API keys, virtual environments), and ensures the safe handling of all users.
+- **Requirements**: Python 3.13.5, VS Code on Windows 11.
+- **Installation**:
+  - Clone the repo: `git clone https://github.com/JustinFussell/SAiL.git`.
+  - Navigate to the project folder: `cd SAiL`.
+  - Create a virtual environment: `python -m venv .venv`.
+  - Activate it: `.venv\Scripts\Activate.ps1` (PowerShell) or `.venv\Scripts\activate` (CMD).
+  - Install dependencies: `pip install -r requirements.txt` (create `requirements.txt` with: `streamlit`, `sentence-transformers`, `transformers`, `torch`, `pandas`, `requests`).
+- **Run**: `streamlit run app.py`.
+- **Notes**: Uses `.gitignore` to exclude sensitive files (e.g., API keys, `.venv`).
 
 ## Progress
-**Week 1**
-- Successfully created a very basic test Streamlit app to understand the basics.  
-- Successfully built a math dataset with 50+ questions and answers for the AI chatbot and tested the AI model in Google Colab’s free cloud platform to ensure correct and accurate answering of each question.
+- **Week 1**: Built a basic Streamlit app and a 50+ question math dataset, tested with Google Colab.
+- **Week 2**: Expanded to 100+ questions across topics, integrated `sentence-transformers` and `T5-v1_1-small` (fixing `OSError`), added DeepL API, and designed the UI. Pushed to GitHub.
+- **Current (July 26, 2025)**: App is functional with sample datasets, multilingual support, and a polished UI. Local testing shows fair accuracy. Enhancing error handling, and planning dataset expansion to maximise answer accuracy.
 
-**Week 2**
-- Expanded `math_data.csv` to 100+ questions covering arithmetic, fractions, geometry, algebra, trigonometry, probability, and calculus, with step-by-step explanations (e.g., “What is 2 + 2?” → “2 + 2 equals 4”).  
-- Developed `app.py` with a hybrid AI system using `sentence-transformers` (`all-MiniLM-L6-v2`) for similarity matching and `distilbert-base-uncased-distilled-squad` for fallback answers, fixing an initial `OSError`.  
-- Integrated DeepL API Free (500,000 characters/month) for multilingual support in English, Afrikaans, and Xhosa, with basic error handling.  
-- Designed a modern Streamlit UI with custom CSS, a two-column layout (question input/answers and chat history), animated buttons, a gold-themed sidebar, MathJax for math symbols (e.g., x², π), and a branded logo (`assets/SAiL.png`).  
-- Added a sidebar for language and subject selection (Math available, Science coming soon) and a math symbols guide.  
-- Resolved Git issues (e.g., unrelated histories) and pushed updates to GitHub (`https://github.com/JustinFussell/SAiL.git`).  
-- Shared progress on LinkedIn, highlighting features and next steps.
-  
-- SAiL is a functional AI math tutor with a robust dataset, multilingual capabilities, and a polished UI, ready for local testing.  
-- Preparing for Streamlit Cloud deployment with a `requirements.txt` file (`streamlit`, `sentence-transformers`, `transformers`, `torch`, `pandas`, `requests`).  
-- Next steps include enhancing error handling (e.g., input validation), adding more dataset variety and possible topic categorization (e.g., word problems and possible dropdowns), and deploying to Streamlit Community Cloud for public access. On top of that is additional run throughs to ensure no errors when interacting with the chatbot regarding math question inputs and answer outputs given by the bot to make sure it does not provide incorrect answers to users. 
+## Next Steps
+- Deploy to Streamlit Community Cloud.
+- Add input validation and topic categorization (e.g., word problems).
+- Expand datasets to millions of questions.
+- Ensure accuracy through extensive testing.
 
 ## Contact
-- Sole Developer: Justin Fussell
-- Email: justinfussell23@gmail.com
-- LinkedIn: www.linkedin.com/in/justin-fussell
+- **Developer**: Justin Fussell
+- **Email**: justinfussell23@gmail.com
+- **LinkedIn**: [www.linkedin.com/in/justin-fussell](https://linkedin.com/in/justin-fussell)
+- **GitHub**: [https://github.com/JustinFussell/SAiL.git](https://github.com/JustinFussell/SAiL.git)
